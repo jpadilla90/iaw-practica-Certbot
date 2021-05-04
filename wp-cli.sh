@@ -84,7 +84,7 @@ chown -R www-data:www-data /var/www/html
 wp config create --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASSWORD --allow-root
 
 # Instalamos Wordpress con la configuración. Recordatorio de actualizar la IP en la lista de variables.
-wp core install --url=$IP_PUBLICA --title="IAW Jose Padilla" --admin_user=admin --admin_password=admin_password --admin_email=@gmail.com --allow-root
+wp core install --url=$IP_PUBLICA --title="IAW Jose Padilla" --admin_user=admin --admin_password=admin_password --admin_email=certbot@gmail.com --allow-root
 
 # Reiniciamos el servicio Apache 
 systemctl restart apache2
