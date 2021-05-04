@@ -12,7 +12,7 @@ En esta práctica vamos a habilitar el protocolo HTTPS en un sitio web WordPress
 **Tareas a realizar**
 ------------
 
-## Paso1 
+### Paso1 
 Crear una instancia en EC2
 
 Cuando esté creando la instancia deberá configurar los puertos que estarán abiertos para poder conectarnos por SSH y para poder acceder por HTTP/HTTPS.
@@ -21,62 +21,63 @@ Cuando esté creando la instancia deberá configurar los puertos que estarán ab
     HTTP (80/TCP)
     HTTPS (443/TCP)
 
-## Paso2
+### Paso2
 Obtener la dirección IP pública de su instancia EC2 en AWS.
 
-## Paso3
+### Paso3
 Realizar la instalación y configuración de un sitio web. Para esta tarea puede hacer uso de los scripts que ha realizado en las prácticas anteriores.
 
-## Paso4
+### Paso4
 Registrar un nombre de dominio en algún proveedor de nombres de dominio gratuito. Por ejemplo, puede hacer uso de Freenom.
 
-## Paso5
+### Paso5
 Configurar los registros DNS del proveedor de nombres de dominio para que el nombre de dominio de ha registrado pueda resolver hacia la dirección IP pública de su instancia EC2 de AWS.
 
 Si utiliza el proveedor de nombres de dominio Freenom tendrá que acceder desde el panel de control, a la sección de sus dominios contratados y una vez allí seleccionar Manage Freenom DNS.
 
 Tendrá que añadir dos registros DNS de tipo A con la dirección IP pública de su instancia EC2 de AWS. Un registro estará en blanco para que pueda resolver el nombre de dominio sin las www y el otro registro estará con las www.
 
-Ejemplo: En la siguiente imagen se muestra cómo sería la configuración de los registros DNS para resolver hacia la dirección IP 54.236.57.173.
+**Ejemplo:** En la siguiente imagen se muestra cómo sería la configuración de los registros DNS para resolver hacia la dirección IP 54.236.57.173.
 
-Nota: Tenga en cuenta que una vez que ha realizado los cambios en el DNS habrá que esperar hasta que los cambios se progaguen. Puede hacer uso de la utilidad dnschecker.org para comprobar el estado de propagación de las DNS.
+**Nota:** Tenga en cuenta que una vez que ha realizado los cambios en el DNS habrá que esperar hasta que los cambios se progaguen. Puede hacer uso de la utilidad dnschecker.org para comprobar el estado de propagación de las DNS.
 
 ## Paso6
 Instalar y configurar el cliente ACME Certbot en su instacia EC2 de AWS, siguiendo los pasos de la documentación oficial.
 
 Se recomienda visitar la página web oficial de Certobot y utilizar el formulario para indicar el software que vamos a utilizar (Apache, Ngingx, HAProxy, etc.) y el sistema operativo. Una vez que hemos realizado la selección nos aparecerán las instrucciones que tenemos que tenemos que seguir.
 
-Ejemplo: A continuación se muestran los pasos que se han llevado a cabo para realizar la instalación y configuración de Certbot en una máquina con el servidor web Apache y el sistema operativo Ubuntu 20.04.
+**Ejemplo:** A continuación se muestran los pasos que se han llevado a cabo para realizar la instalación y configuración de Certbot en una máquina con el servidor web Apache y el sistema operativo Ubuntu 20.04.
 
-    Realizamos la instalación y actualización de snapd.
+1. Realizamos la instalación y actualización de snapd.
 
-sudo snap install core; sudo snap refresh core
+`sudo snap install core; sudo snap refresh core`
 
-    Eliminamos si existiese alguna instalación previa de certbot con apt.
+2. Eliminamos si existiese alguna instalación previa de certbot con apt.
 
-sudo apt-get remove certbot
+`sudo apt-get remove certbot`
 
-    Instalamos el cliente de Certbot con snapd.
+3. Instalamos el cliente de Certbot con snapd.
 
-sudo snap install --classic certbot
+`sudo snap install --classic certbot`
 
-    Creamos una alias para el comando certbot.
+4. Creamos una alias para el comando certbot.
 
-sudo ln -s /snap/bin/certbot /usr/bin/certbot
+`sudo ln -s /snap/bin/certbot /usr/bin/certbot`
 
-    Obtenemos el certificado y configuramos el servidor web Apache.
+5. Obtenemos el certificado y configuramos el servidor web Apache.
 
-sudo certbot --apache
+`sudo certbot --apache`
 
 Durante la ejecución del comando anterior tendremos que contestar algunas preguntas:
 
-    Habrá que introducir una dirección de correo electrónico. (Ejemplo: demo@demo.es)
-    Aceptar los términos de uso. (Ejemplo: y)
-    Nos preguntará si queremos compartir nuestra dirección de correo electrónico con la Electronic Frontier Foundation. (Ejemplo: n)
-    Y finalmente nos preguntará el nombre del dominio, si no lo encuentra en los archivos de configuración del servidor web. (Ejemplo: practicahttps.ml)
+- Habrá que introducir una dirección de correo electrónico. (Ejemplo: demo@demo.es)
+- Aceptar los términos de uso. (Ejemplo: y)
+- Nos preguntará si queremos compartir nuestra dirección de correo electrónico con la Electronic Frontier Foundation. (Ejemplo: n)
+- Y finalmente nos preguntará el nombre del dominio, si no lo encuentra en los archivos de configuración del servidor web. (Ejemplo: practicahttps.ml)
 
 A continuación se muestra un ejemplo de cómo es la interacción durante la ejecución del comando sudo certbot --apache.
 
+```bash
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator apache, Installer apache
 Enter email address (used for urgent renewal and security notices)
@@ -132,41 +133,41 @@ IMPORTANT NOTES:
 
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
+```
 
 Una vez llegado hasta este punto tendríamos nuestro sitio web con HTTPS habilidado y todo configurado para que el certificado se vaya renovando automáticamente.
 
-Nota:
+**Nota:**
 
 También es posible especificar como argumentos las respuestas que nos hará certbot durante el proceso de instalación. Por ejemplo, las mismas respuestas que hemos dado durante la instalación manual se podrían haber indicado con los siguientes parámetros.
 
-    Dirección de correo: -m demo@demo.es
-    Aceptamos los términos de uso: --agree-tos
-    No queremos compartir nuestro email con la Electronic Frontier Foundation: --no-eff-email
-    Dominio: -d practicahttps.ml
+- Dirección de correo: `-m demo@demo.es`
+- Aceptamos los términos de uso: `--agree-tos`
+- No queremos compartir nuestro email con la Electronic Frontier Foundation: `--no-eff-email`
+- Dominio: `-d practicahttps.ml`
 
-sudo certbot --apache -m demo@demo.es --agree-tos --no-eff-email -d practicahttps.ml
+`sudo certbot --apache -m demo@demo.es --agree-tos --no-eff-email -d practicahttps.ml`
 
 Con el siguiente comando podemos comprobar que hay un temporizador en el sistema encargado de realizar la renovación de los certificados de manera automática.
 
-systemctl list-timers
+`systemctl list-timers`
 
 Se recomienda revisar los archivos de configuración del servidor web para ver cuáles han sido las cambios que ha realizado el cliente Certbot.
 
 #### Entrega
 
 
-URL del repositorio de GitHub donde se ha alojado el documento técnico escrito en Markdown.
+- URL del repositorio de GitHub donde se ha alojado el documento técnico escrito en Markdown.
 
-Scripts de bash utilizados para realizar el aprovisionamiento de las máquinas virtuales y para la instalación y configuración del cliente Certbot.
+- Scripts de bash utilizados para realizar el aprovisionamiento de las máquinas virtuales y para la instalación y configuración del cliente Certbot.
 
-El contenido de cada uno de los scripts deberá ser incluido en el documento y deberá describir qué acciones se han ido realizando en cada uno de ellos.
+- El contenido de cada uno de los scripts deberá ser incluido en el documento y deberá describir qué acciones se han ido realizando en cada uno de ellos.
 
-URL del sitio web con HTTPS habilitado.
+- URL del sitio web con HTTPS habilitado.
 
 
 **Archivos en el repositorio**
 ------------
-1. **README.md**          Documentación.
 2. **ª**
 
 **Referencias**
