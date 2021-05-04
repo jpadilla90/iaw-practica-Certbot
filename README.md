@@ -168,7 +168,7 @@ Se recomienda revisar los archivos de configuración del servidor web para ver c
 
 **Archivos en el repositorio**
 ------------
-2. **ª**
+1. **README**           Documentación.
 
 **Referencias**
 ------------
