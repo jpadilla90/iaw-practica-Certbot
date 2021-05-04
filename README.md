@@ -21,11 +21,18 @@ Cuando esté creando la instancia deberá configurar los puertos que estarán ab
     HTTP (80/TCP)
     HTTPS (443/TCP)
 
+https://i.imgur.com/BKrJ73G.png
+Grupo de seguridad y lista de puertos.    
+
 ### Paso2
 Obtener la dirección IP pública de su instancia EC2 en AWS.
 
+34.229.0.223
+
 ### Paso3
 Realizar la instalación y configuración de un sitio web. Para esta tarea puede hacer uso de los scripts que ha realizado en las prácticas anteriores.
+
+Usamos la instalación mediante WP-CLI de anteriores prácticas.
 
 ### Paso4
 Registrar un nombre de dominio en algún proveedor de nombres de dominio gratuito. Por ejemplo, puede hacer uso de Freenom.
