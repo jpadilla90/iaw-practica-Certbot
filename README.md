@@ -33,6 +33,7 @@ Obtener la dirección IP pública de su instancia EC2 en AWS.
 Realizar la instalación y configuración de un sitio web. Para esta tarea puede hacer uso de los scripts que ha realizado en las prácticas anteriores.
 
 Usamos la instalación mediante WP-CLI de anteriores prácticas.
+wp-cli.sh y comandos.md adjuntos.
 
 ### Paso4
 Registrar un nombre de dominio en algún proveedor de nombres de dominio gratuito. Por ejemplo, puede hacer uso de Freenom.
