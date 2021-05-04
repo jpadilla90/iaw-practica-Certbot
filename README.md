@@ -35,6 +35,8 @@ Realizar la instalación y configuración de un sitio web. Para esta tarea puede
 Usamos la instalación mediante WP-CLI de anteriores prácticas.
 wp-cli.sh y comandos.md adjuntos.
 
+https://imgur.com/eP3fZtq
+
 ### Paso4
 Registrar un nombre de dominio en algún proveedor de nombres de dominio gratuito. Por ejemplo, puede hacer uso de Freenom.
 
