@@ -114,6 +114,9 @@ Se recomienda revisar los archivos de configuración del servidor web para ver c
 - URL del sitio web con HTTPS habilitado.
 
 
+![](https://i.imgur.com/cyecvht.png)
+Diferencias entre los dos sitios.
+
 **Archivos en el repositorio**
 ------------
 1. **README**           Documentación.
